@@ -35,7 +35,7 @@ export class Gem {
     if (stdout.length === 0) {
       throw new Error(`gem.list failed, ${cmd} didn't return anything.`);
     }
-    const dirs = stdout.trim().split('\n');
+    const dirs = stdout.trim().split('\n').filter((path) => { return path.startsWith('/') });
     return dirs.map(dir => new Gem(dir));
   }
 }
